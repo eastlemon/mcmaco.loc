@@ -10,15 +10,19 @@ use app\modules\admin\models\Shop\DeliveryMethodSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\Url;
+use app\modules\admin\components\Navigator;
 
 class DeliveryController extends Controller
 {
     private $service;
+    public $nav;
 
     public function __construct($id, $module, DeliveryMethodManageService $service, $config = [])
     {
         parent::__construct($id, $module, $config);
         $this->service = $service;
+        $this->nav = new Navigator();
     }
 
     public function behaviors(): array
@@ -33,11 +37,35 @@ class DeliveryController extends Controller
         ];
     }
 
-    /**
-     * @return mixed
-     */
+    public static function titleIndex()
+    {
+        return Yii::t('shop', 'Delivery');
+    }
+
+    public static function crumbsToIndex()
+    {
+        return [
+            ['label' => Yii::t('shop', 'Control'), 'url' => ['/admin']],
+        ];
+    }
+
+    public static function crumbsToDelivery()
+    {
+        return [
+            ['label' => Yii::t('shop', 'Control'), 'url' => ['/admin']],            
+            ['label' => static::titleIndex(), 'url' => ['/admin/shop/delivery']],
+        ];
+    }
+
     public function actionIndex()
     {
+        $this->nav->title = static::titleIndex();
+        $this->nav->crumbs = static::crumbsToIndex();
+        $this->nav->menuRight = [
+            ['label' => Yii::t('shop', 'Options')],
+            ['label' => static::titleCreate(), 'url' => ['/admin/shop/delivery/create']],
+        ];
+
         $searchModel = new DeliveryMethodSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -46,23 +74,47 @@ class DeliveryController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+    
+    public static function titleView($id)
+    {
+        return Yii::t('shop', 'View');
+    }
 
-    /**
-     * @param integer $id
-     * @return mixed
-     */
     public function actionView($id)
     {
+        $this->nav->title = static::titleView($id);
+        $this->nav->crumbs = static::crumbsToDelivery();
+        $this->nav->menuRight = [
+            ['label' => Yii::t('shop', 'Options')],
+            ['label' => Yii::t('shop', 'Update'), 'url' => Url::to(['shop/delivery/update', 'id' => $id])],
+            ['label' => Yii::t('shop', 'Delete'), 'url' => Url::to(['shop/delivery/delete', 'id' => $id]),
+                'linkOptions' => [
+                    'data-method' => 'POST',
+                    'data-confirm' => Yii::t('shop', 'Are you sure you want to delete this item?'),
+                ]
+            ],
+            ['label' => Yii::t('shop', 'Cancel'), 'url' => ['/admin/shop/delivery']],
+        ];
+
         return $this->render('view', [
             'method' => $this->findModel($id),
         ]);
     }
 
-    /**
-     * @return mixed
-     */
+    public static function titleCreate()
+    {
+        return Yii::t('shop', 'Create');
+    }
+
     public function actionCreate()
     {
+        $this->nav->title = static::titleCreate();
+        $this->nav->crumbs = static::crumbsToDelivery();
+        $this->nav->menuRight = [
+            ['label' => Yii::t('shop', 'Options')],
+            ['label' => Yii::t('shop', 'Cancel'), 'url' => ['/admin/shop/delivery']],
+        ];
+
         $form = new DeliveryMethodForm();
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             try {
@@ -78,12 +130,20 @@ class DeliveryController extends Controller
         ]);
     }
 
-    /**
-     * @param integer $id
-     * @return mixed
-     */
+    public static function titleUpdate($id)
+    {
+        return Yii::t('shop', 'Update');
+    }
+    
     public function actionUpdate($id)
     {
+        $this->nav->title = static::titleUpdate($id);
+        $this->nav->crumbs = static::crumbsToDelivery();
+        $this->nav->menuRight = [
+            ['label' => Yii::t('shop', 'Options')],
+            ['label' => Yii::t('shop', 'Cancel'), 'url' => ['/admin/shop/delivery']],
+        ];
+
         $method = $this->findModel($id);
 
         $form = new DeliveryMethodForm($method);
@@ -101,11 +161,7 @@ class DeliveryController extends Controller
             'method' => $method,
         ]);
     }
-
-    /**
-     * @param integer $id
-     * @return mixed
-     */
+    
     public function actionDelete($id)
     {
         try {
@@ -117,11 +173,6 @@ class DeliveryController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * @param integer $id
-     * @return DeliveryMethod the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     protected function findModel($id): DeliveryMethod
     {
         if (($model = DeliveryMethod::findOne($id)) !== null) {

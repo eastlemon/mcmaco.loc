@@ -15,16 +15,12 @@ use yii\grid\GridView;
                 'columns' => [
                     [
                         'attribute' => 'name',
-                        'label' => Yii::t('shop', 'Name'),
                         'value' => function (Brand $model) {
                             return Html::a(Html::encode($model->name), ['view', 'id' => $model->id]);
                         },
                         'format' => 'raw',
                     ],
-                    [
-                        'attribute' => 'slug',
-                        'label' => Yii::t('shop', 'Slug'),
-                    ],
+                    'slug',
                     [
                         'class' => 'yii\grid\ActionColumn',
                         'template'=>'{update} {delete}',

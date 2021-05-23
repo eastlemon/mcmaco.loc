@@ -2,6 +2,7 @@
 
 namespace shop\entities\Shop\Order;
 
+use Yii;
 use lhs\Yii2SaveRelationsBehavior\SaveRelationsBehavior;
 use shop\entities\Shop\DeliveryMethod;
 use shop\entities\User\User;
@@ -9,24 +10,6 @@ use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\helpers\Json;
 
-/**
- * @property int $id
- * @property int $created_at
- * @property int $user_id
- * @property int $delivery_method_id
- * @property string $delivery_method_name
- * @property int $delivery_cost
- * @property string $payment_method
- * @property int $cost
- * @property int $note
- * @property int $current_status
- * @property string $cancel_reason
- * @property CustomerData $customerData
- * @property DeliveryData $deliveryData
- *
- * @property OrderItem[] $items
- * @property Status[] $statuses
- */
 class Order extends ActiveRecord
 {
     public $customerData;
@@ -214,5 +197,27 @@ class Order extends ActiveRecord
         $this->setAttribute('delivery_address', $this->deliveryData->address);
 
         return parent::beforeSave($insert);
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('shop', 'ID'),
+            'created_at' => Yii::t('shop', 'Created At'),
+            'user_id' => Yii::t('shop', 'User ID'),
+            'delivery_method_id' => Yii::t('shop', 'Delivery Method ID'),
+            'delivery_method_name' => Yii::t('shop', 'Delivery Method Name'),
+            'delivery_cost' => Yii::t('shop', 'Delivery Cost'),
+            'payment_method' => Yii::t('shop', 'Payment Method'),
+            'cost' => Yii::t('shop', 'Cost'),
+            'note' => Yii::t('shop', 'Note'),
+            'current_status' => Yii::t('shop', 'Current Status'),
+            'cancel_reason' => Yii::t('shop', 'Cancel Reason'),
+            'statuses_json' => Yii::t('shop', 'Statuses Json'),
+            'customer_phone' => Yii::t('shop', 'Customer Phone'),
+            'customer_name' => Yii::t('shop', 'Customer Name'),
+            'delivery_index' => Yii::t('shop', 'Delivery Index'),
+            'delivery_address' => Yii::t('shop', 'Delivery Address'),
+        ];
     }
 }

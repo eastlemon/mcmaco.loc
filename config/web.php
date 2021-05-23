@@ -96,7 +96,7 @@ $config = [
     'controllerMap' => [
         'elfinder' => [
             'class' => 'mihaildev\elfinder\Controller',
-            'access' => ['@'],
+            'access' => ['?'],
             'plugin' => [
                 [
                     'class'=>'\mihaildev\elfinder\plugin\Sluggable',

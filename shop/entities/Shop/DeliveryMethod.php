@@ -2,17 +2,10 @@
 
 namespace shop\entities\Shop;
 
+use Yii;
 use shop\entities\Shop\queries\DeliveryMethodQuery;
 use yii\db\ActiveRecord;
 
-/**
- * @property int $id
- * @property string $name
- * @property int $cost
- * @property int $min_weight
- * @property int $max_weight
- * @property int $sort
- */
 class DeliveryMethod extends ActiveRecord
 {
     public static function create($name, $cost, $minWeight, $maxWeight, $sort): self
@@ -48,5 +41,17 @@ class DeliveryMethod extends ActiveRecord
     public static function find(): DeliveryMethodQuery
     {
         return new DeliveryMethodQuery(static::class);
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('shop', 'ID'),
+            'name' => Yii::t('shop', 'Name'),
+            'cost' => Yii::t('shop', 'Cost'),
+            'min_weight' => Yii::t('shop', 'Min Weight'),
+            'max_weight' => Yii::t('shop', 'Max Weight'),
+            'sort' => Yii::t('shop', 'Sort'),
+        ];
     }
 }

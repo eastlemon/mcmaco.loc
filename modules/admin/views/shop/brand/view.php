@@ -11,18 +11,9 @@ use yii\widgets\DetailView;
             <?= DetailView::widget([
                 'model' => $brand,
                 'attributes' => [
-                    [
-                        'attribute' => 'id',
-                        'label' => Yii::t('shop', 'Id'),
-                    ],
-                    [
-                        'attribute' => 'name',
-                        'label' => Yii::t('shop', 'Name'),
-                    ],
-                    [
-                        'attribute' => 'name',
-                        'label' => Yii::t('shop', 'Slug'),
-                    ],
+                    'id',
+                    'name',
+                    'slug',
                 ],
             ]) ?>
         </div>

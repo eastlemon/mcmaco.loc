@@ -3,6 +3,7 @@
 use shop\entities\Page;
 use yii\bootstrap4\Html;
 use yii\grid\GridView;
+use rmrevin\yii\fontawesome\FAS;
 
 ?>
 
@@ -24,11 +25,11 @@ use yii\grid\GridView;
                     [
                         'value' => function (Page $model) {
                             return
-                                Html::a('<span class="glyphicon glyphicon-arrow-up"></span>', ['move-up', 'id' => $model->id]) .
-                                Html::a('<span class="glyphicon glyphicon-arrow-down"></span>', ['move-down', 'id' => $model->id]);
+                                Html::a(FAS::icon('arrow-up'), ['move-up', 'id' => $model->id]) . '&nbsp;' .
+                                Html::a(FAS::icon('arrow-down'), ['move-down', 'id' => $model->id]);
                         },
                         'format' => 'raw',
-                        'contentOptions' => ['style' => 'text-align: center'],
+                        'contentOptions' => ['style' => 'text-align:center;'],
                     ],
                     'slug',
                     'title',

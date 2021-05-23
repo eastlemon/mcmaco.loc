@@ -11,22 +11,10 @@ use yii\widgets\DetailView;
             <?= DetailView::widget([
                 'model' => $category,
                 'attributes' => [
-                    [
-                        'attribute' => 'id',
-                        'label' => Yii::t('shop', 'Id'),
-                    ],
-                    [
-                        'attribute' => 'name',
-                        'label' => Yii::t('shop', 'Name'),
-                    ],
-                    [
-                        'attribute' => 'name',
-                        'label' => Yii::t('shop', 'Slug'),
-                    ],
-                    [
-                        'attribute' => 'title',
-                        'label' => Yii::t('shop', 'Title'),
-                    ],
+                    'id',
+                    'name',
+                    'name',
+                    'title',
                 ],
             ]) ?>
         </div>

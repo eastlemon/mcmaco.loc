@@ -7,9 +7,6 @@ use shop\entities\Shop\Tag;
 use yii\base\Model;
 use yii\helpers\ArrayHelper;
 
-/**
- * @property array $newNames
- */
 class TagsForm extends Model
 {
     public $existing = [];

@@ -13,15 +13,39 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use yii\helpers\Url;
+use app\modules\admin\components\Navigator;
 
 class OrderController extends Controller
 {
     private $service;
+    public $nav;
 
     public function __construct($id, $module, OrderManageService $service, $config = [])
     {
         parent::__construct($id, $module, $config);
         $this->service = $service;
+        $this->nav = new Navigator();
+    }
+
+    public static function titleIndex()
+    {
+        return Yii::t('shop', 'Orders');
+    }
+
+    public static function crumbsToIndex()
+    {
+        return [
+            ['label' => Yii::t('shop', 'Control'), 'url' => ['/admin']],
+        ];
+    }
+
+    public static function crumbsToOrder()
+    {
+        return [
+            ['label' => Yii::t('shop', 'Control'), 'url' => ['/admin']],            
+            ['label' => static::titleIndex(), 'url' => ['/admin/shop/order']],
+        ];
     }
 
     public function behaviors(): array
@@ -37,11 +61,15 @@ class OrderController extends Controller
         ];
     }
 
-    /**
-     * @return mixed
-     */
     public function actionIndex()
     {
+        $this->nav->title = static::titleIndex();
+        $this->nav->crumbs = static::crumbsToIndex();
+        /*$this->nav->menuRight = [
+            ['label' => Yii::t('shop', 'Options')],
+            //['label' => static::titleCreate(), 'url' => ['/admin/shop/order/create']],
+        ];*/
+
         $searchModel = new OrderSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -51,9 +79,6 @@ class OrderController extends Controller
         ]);
     }
 
-    /**
-     * @return mixed
-     */
     public function actionExport()
     {
         $query = Order::find()->orderBy(['id' => SORT_DESC]);
@@ -63,8 +88,6 @@ class OrderController extends Controller
         $worksheet = $objPHPExcel->getActiveSheet();
 
         foreach ($query->each() as $row => $order) {
-            /** @var Order $order */
-
             $worksheet->setCellValueByColumnAndRow(0, $row + 1, $order->id);
             $worksheet->setCellValueByColumnAndRow(1, $row + 1, date('Y-m-d H:i:s', $order->created_at));
         }
@@ -76,23 +99,46 @@ class OrderController extends Controller
         return Yii::$app->response->sendFile($file, 'report.xlsx');
     }
 
-    /**
-     * @param integer $id
-     * @return mixed
-     */
+    public static function titleView($id)
+    {
+        return Yii::t('shop', 'View');
+    }
+
     public function actionView($id)
     {
+        $this->nav->title = static::titleView($id);
+        $this->nav->crumbs = static::crumbsToOrder();
+        $this->nav->menuRight = [
+            ['label' => Yii::t('shop', 'Options')],
+            ['label' => Yii::t('shop', 'Update'), 'url' => Url::to(['shop/order/update', 'id' => $id])],
+            ['label' => Yii::t('shop', 'Delete'), 'url' => Url::to(['shop/order/delete', 'id' => $id]),
+                'linkOptions' => [
+                    'data-method' => 'POST',
+                    'data-confirm' => Yii::t('shop', 'Are you sure you want to delete this item?'),
+                ]
+            ],
+            ['label' => Yii::t('shop', 'Cancel'), 'url' => ['/admin/shop/order']],
+        ];
+
         return $this->render('view', [
             'order' => $this->findModel($id),
         ]);
     }
 
-    /**
-     * @param integer $id
-     * @return mixed
-     */
+    public static function titleUpdate($id)
+    {
+        return Yii::t('shop', 'Update');
+    }
+
     public function actionUpdate($id)
     {
+        $this->nav->title = static::titleUpdate($id);
+        $this->nav->crumbs = static::crumbsToOrder();
+        $this->nav->menuRight = [
+            ['label' => Yii::t('shop', 'Options')],
+            ['label' => Yii::t('shop', 'Cancel'), 'url' => ['/admin/shop/order']],
+        ];
+
         $order = $this->findModel($id);
 
         $form = new OrderEditForm($order);
@@ -111,10 +157,6 @@ class OrderController extends Controller
         ]);
     }
 
-    /**
-     * @param integer $id
-     * @return mixed
-     */
     public function actionDelete($id)
     {
         try {
@@ -126,11 +168,6 @@ class OrderController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * @param integer $id
-     * @return Order the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     protected function findModel($id): Order
     {
         if (($model = Order::findOne($id)) !== null) {

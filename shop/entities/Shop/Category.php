@@ -2,30 +2,13 @@
 
 namespace shop\entities\Shop;
 
+use Yii;
 use yii\db\ActiveRecord;
 use paulzi\nestedsets\NestedSetsBehavior;
 use shop\entities\behaviors\MetaBehavior;
 use shop\entities\Meta;
 use shop\entities\Shop\queries\CategoryQuery;
 
-/**
- * @property integer $id
- * @property string $name
- * @property string $slug
- * @property string $title
- * @property string $description
- * @property integer $lft
- * @property integer $rgt
- * @property integer $depth
- * @property Meta $meta
- *
- * @property Category $parent
- * @property Category[] $parents
- * @property Category[] $children
- * @property Category $prev
- * @property Category $next
- * @mixin NestedSetsBehavior
- */
 class Category extends ActiveRecord
 {
     public $meta;
@@ -83,5 +66,20 @@ class Category extends ActiveRecord
     public static function find(): CategoryQuery
     {
         return new CategoryQuery(static::class);
+    }
+    
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('shop', 'ID'),
+            'name' => Yii::t('shop', 'Name'),
+            'slug' => Yii::t('shop', 'Slug'),
+            'title' => Yii::t('shop', 'Title'),
+            'description' => Yii::t('shop', 'Description'),
+            'meta_json' => Yii::t('shop', 'Meta Json'),
+            'lft' => Yii::t('shop', 'Lft'),
+            'rgt' => Yii::t('shop', 'Rgt'),
+            'depth' => Yii::t('shop', 'Depth'),
+        ];
     }
 }

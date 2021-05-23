@@ -42,10 +42,10 @@ $index = Yii::$app->controller->route == Yii::$app->defaultRoute;
 
     $menuItems = [
         ['label' => Yii::t('shop', 'Control'), 'url' => ['/admin']],
-        Yii::$app->user->isGuest ? (['label' => 'Вход', 'url' => ['/site/login']]) : ('<li>'
+        Yii::$app->user->isGuest ? (['label' => Yii::t('shop', 'Login'), 'url' => ['/site/login']]) : ('<li>'
         . Html::beginForm(['/site/logout'], 'post')
         . Html::submitButton(
-            'Выход (' . Yii::$app->user->identity->username . ')',
+            Yii::t('shop', 'Logout') . ' (' . Yii::$app->user->identity->username . ')',
             ['class' => 'btn btn-link logout']
         )
         . Html::endForm()

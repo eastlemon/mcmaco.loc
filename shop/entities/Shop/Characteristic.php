@@ -2,18 +2,10 @@
 
 namespace shop\entities\Shop;
 
+use Yii;
 use yii\db\ActiveRecord;
 use yii\helpers\Json;
 
-/**
- * @property integer $id
- * @property string $name
- * @property string $type
- * @property string $required
- * @property string $default
- * @property array $variants
- * @property integer $sort
- */
 class Characteristic extends ActiveRecord
 {
     const TYPE_STRING = 'string';
@@ -79,5 +71,18 @@ class Characteristic extends ActiveRecord
     {
         $this->setAttribute('variants_json', Json::encode(array_filter($this->variants)));
         return parent::beforeSave($insert);
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('shop', 'ID'),
+            'name' => Yii::t('shop', 'Name'),
+            'type' => Yii::t('shop', 'Type'),
+            'required' => Yii::t('shop', 'Required'),
+            'default' => Yii::t('shop', 'Default'),
+            'variants_json' => Yii::t('shop', 'Variants Json'),
+            'sort' => Yii::t('shop', 'Sort'),
+        ];
     }
 }

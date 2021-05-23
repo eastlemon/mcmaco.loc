@@ -24,33 +24,21 @@ use rmrevin\yii\fontawesome\FAS;
                     <?= DetailView::widget([
                         'model' => $product,
                         'attributes' => [
-                            [
-                                'attribute' => 'id',
-                                'label' => Yii::t('shop', 'Id'),
-                            ],
+                            'id',
                             [
                                 'attribute' => 'status',
                                 'value' => ProductHelper::statusLabel($product->status),
                                 'format' => 'raw',
-                                'label' => Yii::t('shop', 'Status'),
                             ],
                             [
                                 'attribute' => 'brand_id',
                                 'value' => ArrayHelper::getValue($product, 'brand.name'),
-                                'label' => Yii::t('shop', 'Brand Id'),
                             ],
-                            [
-                                'attribute' => 'code',
-                                'label' => Yii::t('shop', 'Code'),
-                            ],
-                            [
-                                'attribute' => 'name',
-                                'label' => Yii::t('shop', 'Name'),
-                            ],
+                            'code',
+                            'name',
                             [
                                 'attribute' => 'category_id',
                                 'value' => ArrayHelper::getValue($product, 'category.name'),
-                                'label' => Yii::t('shop', 'Category Id'),
                             ],
                             [
                                 'value' => implode(', ', ArrayHelper::getColumn($product->categories, 'name')),
@@ -60,24 +48,18 @@ use rmrevin\yii\fontawesome\FAS;
                                 'value' => implode(', ', ArrayHelper::getColumn($product->tags, 'name')),
                                 'label' => Yii::t('shop', 'Tags'),
                             ],
-                            [
-                                'attribute' => 'quantity',
-                                'label' => Yii::t('shop', 'Quantity'),
-                            ],
+                            'quantity',
                             [
                                 'attribute' => 'weight',
                                 'value' => WeightHelper::format($product->weight),
-                                'label' => Yii::t('shop', 'Weight'),
                             ],
                             [
                                 'attribute' => 'price_new',
                                 'value' => PriceHelper::format($product->price_new),
-                                'label' => Yii::t('shop', 'Price New'),
                             ],
                             [
                                 'attribute' => 'price_old',
                                 'value' => PriceHelper::format($product->price_old),
-                                'label' => Yii::t('shop', 'Price Old'),
                             ],
                         ],
                     ]) ?>
@@ -119,25 +101,15 @@ use rmrevin\yii\fontawesome\FAS;
             <?= GridView::widget([
                 'dataProvider' => $modificationsProvider,
                 'columns' => [
-                    [
-                        'attribute' => 'code',
-                        'label' => Yii::t('shop', 'Code'),
-                    ],
-                    [
-                        'attribute' => 'name',
-                        'label' => Yii::t('shop', 'Name'),
-                    ],
+                    'code',
+                    'name',
                     [
                         'attribute' => 'price',
                         'value' => function (Modification $model) {
                             return PriceHelper::format($model->price);
                         },
-                        'label' => Yii::t('shop', 'Price'),
                     ],
-                    [
-                        'attribute' => 'quantity',
-                        'label' => Yii::t('shop', 'Quantity'),
-                    ],
+                    'attribute' => 'quantity',
                     [
                         'class' => 'yii\grid\ActionColumn',
                         'controller' => 'shop/modification',

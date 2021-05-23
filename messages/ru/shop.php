@@ -1,5 +1,15 @@
 <?php
 return [
+    'Category ID' => 'Категория',
+    'Required' => 'Обязательно',
+    'Type' => 'Тип',
+    'Max Weight' => 'Макс. вес',
+    'Min Weight' => 'Мин. вес',
+    'Cost' => 'Стоимость',
+    'Created At' => 'Создан',
+    'Delivery' => 'Доставка',
+    'Files' => 'Файлы',
+    'Orders' => 'Заказы',
     'Category' => 'Категория',
     'Update' => 'Обновить',
     'Delete' => 'Удалить',
@@ -23,6 +33,7 @@ return [
     'Create' => 'Создать',
     'View' => 'Просмотр',
     'Id' => 'Ид',
+    'ID' => 'ИД',
     'ParentId' => 'Родительский Ид',
     'Back' => 'Назад',
     'Control' => 'Контроль',

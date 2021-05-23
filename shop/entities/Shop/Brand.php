@@ -2,6 +2,7 @@
 
 namespace shop\entities\Shop;
 
+use Yii;
 use shop\entities\behaviors\MetaBehavior;
 use shop\entities\Meta;
 use yii\db\ActiveRecord;
@@ -40,6 +41,16 @@ class Brand extends ActiveRecord
     {
         return [
             MetaBehavior::className(),
+        ];
+    }
+    
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('shop', 'ID'),
+            'name' => Yii::t('shop', 'Name'),
+            'slug' => Yii::t('shop', 'Slug'),
+            'meta_json' => Yii::t('shop', 'Meta Json'),
         ];
     }
 }

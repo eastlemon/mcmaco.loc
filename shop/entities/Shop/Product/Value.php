@@ -2,16 +2,11 @@
 
 namespace shop\entities\Shop\Product;
 
+use Yii;
 use shop\entities\Shop\Characteristic;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
-/**
- * @property integer $characteristic_id
- * @property string $value
- *
- * @property Characteristic $characteristic
- */
 class Value extends ActiveRecord
 {
     public static function create($characteristicId, $value): self
@@ -47,5 +42,14 @@ class Value extends ActiveRecord
     public static function tableName(): string
     {
         return '{{%shop_values}}';
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'product_id' => Yii::t('shop', 'Product ID'),
+            'characteristic_id' => Yii::t('shop', 'Characteristic ID'),
+            'value' => Yii::t('shop', 'Value'),
+        ];
     }
 }

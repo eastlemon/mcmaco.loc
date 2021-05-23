@@ -2,15 +2,9 @@
 
 namespace shop\entities\Shop\Product;
 
+use Yii;
 use yii\db\ActiveRecord;
 
-/**
- * @property int $id
- * @property string $code
- * @property string $name
- * @property string $price
- * @property int $quantity
- */
 class Modification extends ActiveRecord
 {
     public static function create($code, $name, $price, $quantity): self
@@ -52,5 +46,17 @@ class Modification extends ActiveRecord
     public static function tableName(): string
     {
         return '{{%shop_modifications}}';
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('shop', 'ID'),
+            'product_id' => Yii::t('shop', 'Product ID'),
+            'code' => Yii::t('shop', 'Code'),
+            'name' => Yii::t('shop', 'Name'),
+            'price' => Yii::t('shop', 'Price'),
+            'quantity' => Yii::t('shop', 'Quantity'),
+        ];
     }
 }

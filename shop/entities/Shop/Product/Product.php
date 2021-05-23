@@ -2,6 +2,7 @@
 
 namespace shop\entities\Shop\Product;
 
+use Yii;
 use shop\entities\EventTrait;
 use lhs\Yii2SaveRelationsBehavior\SaveRelationsBehavior;
 use shop\entities\AggregateRoot;
@@ -18,36 +19,6 @@ use yii\db\ActiveRecord;
 use yii\db\Exception;
 use yii\web\UploadedFile;
 
-/**
- * @property integer $id
- * @property integer $created_at
- * @property string $code
- * @property string $name
- * @property string $description
- * @property integer $category_id
- * @property integer $brand_id
- * @property integer $price_old
- * @property integer $price_new
- * @property integer $rating
- * @property integer $main_photo_id
- * @property integer $status
- * @property integer $weight
- * @property integer $quantity
- *
- * @property Meta $meta
- * @property Brand $brand
- * @property Category $category
- * @property CategoryAssignment[] $categoryAssignments
- * @property Category[] $categories
- * @property TagAssignment[] $tagAssignments
- * @property Tag[] $tags
- * @property RelatedAssignment[] $relatedAssignments
- * @property Modification[] $modifications
- * @property Value[] $values
- * @property Photo[] $photos
- * @property Photo $mainPhoto
- * @property Review[] $reviews
- */
 class Product extends ActiveRecord implements AggregateRoot
 {
     use EventTrait;
@@ -622,5 +593,26 @@ class Product extends ActiveRecord implements AggregateRoot
     public static function find(): ProductQuery
     {
         return new ProductQuery(static::class);
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('shop', 'ID'),
+            'category_id' => Yii::t('shop', 'Category ID'),
+            'brand_id' => Yii::t('shop', 'Brand ID'),
+            'created_at' => Yii::t('shop', 'Created At'),
+            'code' => Yii::t('shop', 'Code'),
+            'name' => Yii::t('shop', 'Name'),
+            'description' => Yii::t('shop', 'Description'),
+            'price_old' => Yii::t('shop', 'Price Old'),
+            'price_new' => Yii::t('shop', 'Price New'),
+            'rating' => Yii::t('shop', 'Rating'),
+            'meta_json' => Yii::t('shop', 'Meta Json'),
+            'main_photo_id' => Yii::t('shop', 'Main Photo ID'),
+            'status' => Yii::t('shop', 'Status'),
+            'weight' => Yii::t('shop', 'Weight'),
+            'quantity' => Yii::t('shop', 'Quantity'),
+        ];
     }
 }

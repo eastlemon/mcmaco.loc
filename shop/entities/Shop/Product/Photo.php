@@ -2,18 +2,12 @@
 
 namespace shop\entities\Shop\Product;
 
+use Yii;
 use shop\services\WaterMarker;
 use yii\db\ActiveRecord;
 use yii\web\UploadedFile;
 use yiidreamteam\upload\ImageUploadBehavior;
 
-/**
- * @property integer $id
- * @property string $file
- * @property integer $sort
- *
- * @mixin ImageUploadBehavior
- */
 class Photo extends ActiveRecord
 {
     public static function create(UploadedFile $file): self
@@ -60,6 +54,16 @@ class Photo extends ActiveRecord
                     'catalog_origin' => ['processor' => [new WaterMarker(1024, 768, '@app/web/image/logo.png'), 'process']],
                 ],
             ],
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('shop', 'ID'),
+            'product_id' => Yii::t('shop', 'Product ID'),
+            'file' => Yii::t('shop', 'File'),
+            'sort' => Yii::t('shop', 'Sort'),
         ];
     }
 }

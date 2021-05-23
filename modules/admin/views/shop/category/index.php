@@ -21,7 +21,6 @@ use rmrevin\yii\fontawesome\FAS;
                             return $indent . Html::a(Html::encode($model->name), ['view', 'id' => $model->id]);
                         },
                         'format' => 'raw',
-                        'label' => Yii::t('shop', 'Name'),
                     ],
                     [
                         'value' => function (Category $model) {
@@ -30,16 +29,10 @@ use rmrevin\yii\fontawesome\FAS;
                                 Html::a(FAS::icon('arrow-down'), ['move-down', 'id' => $model->id]);
                         },
                         'format' => 'raw',
-                        'contentOptions' => ['style' => 'text-align:center; width:60px;'],
+                        'contentOptions' => ['style' => 'text-align:center; width:1px;'],
                     ],
-                    [
-                        'attribute' => 'slug',
-                        'label' => Yii::t('shop', 'Slug'),
-                    ],
-                    [
-                        'attribute' => 'title',
-                        'label' => Yii::t('shop', 'Title'),
-                    ],
+                    'slug',
+                    'title',
                     [
                         'class' => 'yii\grid\ActionColumn',
                         'template'=>'{update} {delete}',
