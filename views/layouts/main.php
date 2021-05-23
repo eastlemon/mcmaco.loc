@@ -1,8 +1,5 @@
 <?php
 
-/* @var $this \yii\web\View */
-/* @var $content string */
-
 use app\widgets\Alert;
 use yii\helpers\Html;
 use yii\bootstrap4\Nav;
@@ -41,15 +38,14 @@ $index = Yii::$app->controller->route == Yii::$app->defaultRoute;
     ]);
 
     $menuItems = [
-        ['label' => Yii::t('shop', 'Control'), 'url' => ['/admin']],
-        Yii::$app->user->isGuest ? (['label' => Yii::t('shop', 'Login'), 'url' => ['/site/login']]) : ('<li>'
-        . Html::beginForm(['/site/logout'], 'post')
-        . Html::submitButton(
-            Yii::t('shop', 'Logout') . ' (' . Yii::$app->user->identity->username . ')',
-            ['class' => 'btn btn-link logout']
-        )
-        . Html::endForm()
-        . '</li>')
+        Yii::$app->user->isGuest ? ('') : (
+            ['label' => Yii::t('app', 'Control'), 'url' => ['/control'], 'active' => in_array(Yii::$app->controller->id, ['control'])]
+        ),
+        Yii::$app->user->isGuest ? (
+            ['label' => Yii::t('app', 'Login'), 'url' => ['/site/login']]
+        ) : (
+            ['label' => Yii::t('app', 'Logout') . ' (' . Yii::$app->user->identity->username . ')', 'url' => ['/site/logout'], 'linkOptions' => ['data-method' => 'post']]
+        ),
     ];
 
     echo Nav::widget([

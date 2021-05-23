@@ -9,6 +9,7 @@ use shop\dispatchers\EventDispatcher;
 use shop\dispatchers\DeferredEventDispatcher;
 use shop\dispatchers\AsyncEventDispatcher;
 use yii\queue\Queue;
+use yii\rbac\ManagerInterface;
 
 class Bootstrap implements BootstrapInterface
 {
@@ -24,6 +25,10 @@ class Bootstrap implements BootstrapInterface
 
         $container->setSingleton(DeferredEventDispatcher::class, function (Container $container) {
             return new DeferredEventDispatcher(new AsyncEventDispatcher($container->get(Queue::class)));
+        });
+
+        $container->setSingleton(ManagerInterface::class, function () use ($app) {
+            return $app->authManager;
         });
 	}
 }

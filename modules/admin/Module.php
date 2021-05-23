@@ -3,20 +3,12 @@
 namespace app\modules\admin;
 
 use app\assets\AdminAsset;
+use yii\filters\AccessControl;
 
-/**
- * admin module definition class
- */
 class Module extends \yii\base\Module
 {
-    /**
-     * {@inheritdoc}
-     */
     public $controllerNamespace = 'app\modules\admin\controllers';
 
-    /**
-     * {@inheritdoc}
-     */
     public function init()
     {
         parent::init();
@@ -24,5 +16,24 @@ class Module extends \yii\base\Module
         // custom initialization code goes here
 
         AdminAsset::register(\Yii::$app->view);
+    }
+
+    public function behaviors(){
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['login'],
+                        'allow' => true,
+                        'roles' => ['?'],
+                    ],
+                ],
+            ],
+        ];
     }
 }

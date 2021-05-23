@@ -37,7 +37,9 @@
         "elisdn/yii2-composite-form": "^1.1",
         "yii-dream-team/yii2-upload-behavior": "*",
         "phpoffice/phpspreadsheet": "^1.17",
-        "mihaildev/yii2-elfinder": "*"
+        "mihaildev/yii2-elfinder": "*",
+        "filsh/yii2-oauth2-server": "^2.0",
+        "yiisoft/yii2-authclient": "~2.2.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

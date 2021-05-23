@@ -1,9 +1,5 @@
 <?php
 
-/* @var $this yii\web\View */
-/* @var $form yii\bootstrap4\ActiveForm */
-/* @var $model app\models\LoginForm */
-
 use yii\helpers\Html;
 use yii\bootstrap4\ActiveForm;
 
@@ -28,7 +24,7 @@ $this->params['breadcrumbs'][] = 'Вход';
                         <?= $form->field($model, 'rememberMe')->checkbox() ?>
                         </div>
                         <?= Html::submitButton('Login', ['class' => 'btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2']) ?>            
-                        <div style="color:#999;margin:1em 0"><?= Yii::t('app', 'If you forgot your password you can') ?> <?= Html::a(Yii::t('app', 'reset it'), ['auth/request-password-reset']) ?></div>
+                        <div style="color:#999;margin:1em 0"><?= Yii::t('app', 'If you forgot your password you can') ?> <?= Html::a(Yii::t('app', 'reset it'), ['request-password-reset']) ?></div>
                     <?php ActiveForm::end(); ?>
                 </div>
             </div>
