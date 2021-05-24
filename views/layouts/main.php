@@ -39,12 +39,12 @@ $index = Yii::$app->controller->route == Yii::$app->defaultRoute;
 
     $menuItems = [
         Yii::$app->user->isGuest ? ('') : (
-            ['label' => Yii::t('app', 'Control'), 'url' => ['/control'], 'active' => in_array(Yii::$app->controller->id, ['control'])]
+            ['label' => Yii::t('shop', 'Control'), 'url' => ['/admin']]
         ),
         Yii::$app->user->isGuest ? (
-            ['label' => Yii::t('app', 'Login'), 'url' => ['/site/login']]
+            ['label' => Yii::t('app', 'Login'), 'url' => ['/auth/login']]
         ) : (
-            ['label' => Yii::t('app', 'Logout') . ' (' . Yii::$app->user->identity->username . ')', 'url' => ['/site/logout'], 'linkOptions' => ['data-method' => 'post']]
+            ['label' => Yii::t('app', 'Logout'), 'url' => ['/auth/logout'], 'linkOptions' => ['data-method' => 'post']]
         ),
     ];
 

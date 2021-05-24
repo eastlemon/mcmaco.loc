@@ -35,7 +35,7 @@ class SignupController extends Controller
         ];
     }
 
-    public function actionRequest()
+    public function actionIndex()
     {
         $form = new SignupForm();
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {

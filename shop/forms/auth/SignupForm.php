@@ -1,12 +1,10 @@
 <?php
+
 namespace shop\forms\auth;
 
 use yii\base\Model;
 use shop\entities\User\User;
 
-/**
- * Signup form
- */
 class SignupForm extends Model
 {
     public $username;
@@ -14,9 +12,6 @@ class SignupForm extends Model
     public $phone;
     public $password;
 
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [

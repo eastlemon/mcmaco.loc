@@ -5,11 +5,6 @@ namespace shop\entities\User;
 use Webmozart\Assert\Assert;
 use yii\db\ActiveRecord;
 
-/**
- * @property integer $user_id
- * @property string $identity
- * @property string $network
- */
 class Network extends ActiveRecord
 {
     public static function create($network, $identity): self

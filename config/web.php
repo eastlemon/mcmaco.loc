@@ -29,8 +29,17 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => 'app\common\auth\Identity',
             'enableAutoLogin' => true,
+            'identityCookie' => ['name' => '_identity', 'httpOnly' => true, 'domain' => $params['cookieDomain']],
+            'loginUrl' => ['auth/login'],
+        ],
+        'session' => [
+            'name' => '_session',
+            'cookieParams' => [
+                'domain' => $params['cookieDomain'],
+                'httpOnly' => true,
+            ],
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -84,13 +93,13 @@ $config = [
             'class' => \yii\queue\redis\Queue::class,
             'as log' => \yii\queue\LogBehavior::class,
         ],
-        /*'authManager' => [
+        'authManager' => [
             'class' => 'yii\rbac\DbManager',
             'itemTable' => '{{%auth_items}}',
             'itemChildTable' => '{{%auth_item_children}}',
             'assignmentTable' => '{{%auth_assignments}}',
             'ruleTable' => '{{%auth_rules}}',
-        ],*/
+        ],
         'authClientCollection' => [
             'class' => 'yii\authclient\Collection',
             'clients' => [
