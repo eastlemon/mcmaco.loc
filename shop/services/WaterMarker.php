@@ -9,42 +9,28 @@ class WaterMarker
 {
     private $width;
     private $height;
-    private $watermark;
+    private $waterTxt;
 
-    public function __construct($width, $height, $watermark)
+    public function __construct($width, $height, $waterTxt)
     {
         $this->width = $width;
         $this->height = $height;
-        $this->watermark = $watermark;
+        $this->waterTxt = $waterTxt;
     }
 
     public function process(GD $thumb): void
     {
-        $watermark = new GD(Yii::getAlias($this->watermark));
-        $source = $watermark->getOldImage();
-
         if (!empty($this->width) || !empty($this->height)) {
             $thumb->adaptiveResize($this->width, $this->height);
         }
 
-        $originalSize = $thumb->getCurrentDimensions();
-        $watermarkSize = $watermark->getCurrentDimensions();
-
-        $destinationX = $originalSize['width'] - $watermarkSize['width'] - 10;
-        $destinationY = $originalSize['height'] - $watermarkSize['height'] - 10;
-
         $destination = $thumb->getOldImage();
 
-        imagealphablending($source, true);
         imagealphablending($destination, true);
-
-        imagecopy(
-            $destination,
-            $source,
-            $destinationX, $destinationY,
-            0, 0,
-            $watermarkSize['width'], $watermarkSize['height']
-        );
+        $textcolor = imagecolorallocate($destination, 0, 0, 255);
+        $font = Yii::getAlias('@webroot/fonts/Arsenal-Regular.otf');
+        //imagestring($destination, $font, 0, 0, $this->waterTxt, $textcolor);
+        imagettftext($destination, 12, 0, 200, 100, 0, $font, $this->waterTxt);
 
         $thumb->setOldImage($destination);
         $thumb->setWorkingImage($destination);

@@ -1,7 +1,7 @@
 <?php
 
-use yii\bootstrap\ActiveForm;
-use yii\helpers\Html;
+use yii\bootstrap4\ActiveForm;
+use yii\bootstrap4\Html;
 use yii\helpers\Url;
 use app\assets\MagnificPopupAsset;
 use shop\helpers\PriceHelper;
@@ -26,7 +26,7 @@ $this->params['active_category'] = $product->category;
 MagnificPopupAsset::register($this);
 ?>
 
-<div class="row" xmlns:fb="http://www.w3.org/1999/xhtml">
+<div class="row">
     <div class="col-sm-8">
         <ul class="thumbnails">
             <?php foreach ($product->photos as $i => $photo): ?>
@@ -45,13 +45,16 @@ MagnificPopupAsset::register($this);
                 <?php endif; ?>
             <?php endforeach; ?>
         </ul>
-        <ul class="nav nav-tabs">
-            <li class="active"><a href="#tab-description" data-toggle="tab">Description</a></li>
-            <li><a href="#tab-specification" data-toggle="tab">Specification</a></li>
-            <li><a href="#tab-review" data-toggle="tab">Reviews (0)</a></li>
-        </ul>
-        <div class="tab-content">
-            <div class="tab-pane active" id="tab-description"><p>
+
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-description-tab" data-toggle="tab" href="#nav-description" role="tab" aria-controls="nav-description" aria-selected="true">Description</a>
+                <a class="nav-item nav-link" id="nav-specification-tab" data-toggle="tab" href="#nav-specification" role="tab" aria-controls="nav-specification" aria-selected="false">Specification</a>
+                <a class="nav-item nav-link" id="nav-reviews-tab" data-toggle="tab" href="#nav-reviews" role="tab" aria-controls="nav-reviews" aria-selected="false">Reviews (0)</a>
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-description" role="tabpanel" aria-labelledby="nav-description-tab">
                 <?= Yii::$app->formatter->asHtml($product->description, [
                     'Attr.AllowedRel' => array('nofollow'),
                     'HTML.SafeObject' => true,
@@ -60,7 +63,7 @@ MagnificPopupAsset::register($this);
                     'URI.SafeIframeRegexp'=>'%^(https?:)?//(www\.youtube(?:-nocookie)?\.com/embed/|player\.vimeo\.com/video/)%',
                 ]) ?>
             </div>
-            <div class="tab-pane" id="tab-specification">
+            <div class="tab-pane fade" id="nav-specification" role="tabpanel" aria-labelledby="nav-specification-tab">
                 <table class="table table-bordered">
                     <tbody>
                     <?php foreach ($product->values as $value): ?>
@@ -74,8 +77,9 @@ MagnificPopupAsset::register($this);
                     </tbody>
                 </table>
             </div>
-            <div class="tab-pane" id="tab-review">
+            <div class="tab-pane fade" id="nav-reviews" role="tabpanel" aria-labelledby="nav-reviews-tab">
                 <div id="review"></div>
+                
                 <h2>Write a review</h2>
 
                 <?php if (Yii::$app->user->isGuest): ?>
@@ -100,14 +104,13 @@ MagnificPopupAsset::register($this);
                     <?php ActiveForm::end() ?>
 
                 <?php endif; ?>
-
             </div>
         </div>
     </div>
     <div class="col-sm-4">
         <p class="btn-group">
-            <button type="button" data-toggle="tooltip" class="btn btn-primary" title="Add to Wish List" href="<?= Url::to(['/cabinet/wishlist/add', 'id' => $product->id]) ?>" data-method="post"><?= Html::a(FAS::icon('heart')) ?>&nbsp;Любимое</button>
-            <button type="button" data-toggle="tooltip" class="btn btn-warning" title="Compare this Product" onclick="compare.add('47');"><?= Html::a(FAS::icon('greater-than-equal')) ?>&nbsp;Сравнить</button>
+            <button type="button" data-toggle="tooltip" class="btn btn-primary" title="Add to Wish List" href="<?= Url::to(['/cabinet/wishlist/add', 'id' => $product->id]) ?>" data-method="post"><?= Html::a(FAS::icon('heart')) ?></button>
+            <button type="button" data-toggle="tooltip" class="btn btn-warning" title="Compare this Product" onclick="compare.add(<?= $product->id ?>);"><?= Html::a(FAS::icon('greater-than-equal')) ?></button>
         </p>
         <h1><?= Html::encode($product->name) ?></h1>
         <ul class="list-unstyled">
@@ -159,15 +162,16 @@ MagnificPopupAsset::register($this);
         </div>
         <div class="rating">
             <p>
-                <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
-                <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
-                <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
-                <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
-                <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
-                <a href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">0 reviews</a> / <a href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">Write a review</a></p>
+                <a href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">0 reviews</a> / <a href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">Write a review</a>
+            </p>
             <hr>
             <!-- AddThis Button BEGIN -->
-            <div class="addthis_toolbox addthis_default_style" data-url="/index.php?route=product/product&amp;product_id=47"><a class="addthis_button_facebook_like" fb:like:layout="button_count"></a> <a class="addthis_button_tweet"></a> <a class="addthis_button_pinterest_pinit"></a> <a class="addthis_counter addthis_pill_style"></a></div>
+            <div class="addthis_toolbox addthis_default_style" data-url="/index.php?route=product/product&amp;product_id="<?= $product->id ?>>
+                <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+                <a class="addthis_button_tweet"></a>
+                <a class="addthis_button_pinterest_pinit"></a>
+                <a class="addthis_counter addthis_pill_style"></a>
+            </div>
             <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-515eeaf54693130e"></script>
             <!-- AddThis Button END -->
         </div>
