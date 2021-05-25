@@ -10,6 +10,8 @@ use shop\dispatchers\DeferredEventDispatcher;
 use shop\dispatchers\AsyncEventDispatcher;
 use yii\queue\Queue;
 use yii\rbac\ManagerInterface;
+use Elasticsearch\Client;
+use Elasticsearch\ClientBuilder;
 
 class Bootstrap implements BootstrapInterface
 {
@@ -29,6 +31,10 @@ class Bootstrap implements BootstrapInterface
 
         $container->setSingleton(ManagerInterface::class, function () use ($app) {
             return $app->authManager;
+        });
+
+        $container->setSingleton(Client::class, function () {
+            return ClientBuilder::create()->build();
         });
 	}
 }

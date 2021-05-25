@@ -116,7 +116,7 @@ class ProductController extends Controller
                 'linkOptions' => ['data-method' => 'POST'],
             ],
             ['label' => Yii::t('shop', 'Change Price'), 'url' => Url::to(['shop/product/price', 'id' => $id])],
-            $product->canChangeQuantity() ?: ['label' => Yii::t('shop', 'Change Quantity'), 'url' => Url::to(['shop/product/quantity', 'id' => $id])],
+            ['label' => Yii::t('shop', 'Change Quantity'), 'url' => Url::to(['shop/product/quantity', 'id' => $id])],
             ['label' => Yii::t('shop', 'Create modification'), 'url' => Url::to(['shop/modification/create', 'product_id' => $id])],
         ];
 

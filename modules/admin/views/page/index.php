@@ -29,7 +29,7 @@ use rmrevin\yii\fontawesome\FAS;
                                 Html::a(FAS::icon('arrow-down'), ['move-down', 'id' => $model->id]);
                         },
                         'format' => 'raw',
-                        'contentOptions' => ['style' => 'text-align:center;'],
+                        'contentOptions' => ['style' => 'text-align:center; width:1px;'],
                     ],
                     'slug',
                     'title',
