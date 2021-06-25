@@ -12,12 +12,21 @@ use yii\queue\Queue;
 use yii\rbac\ManagerInterface;
 use Elasticsearch\Client;
 use Elasticsearch\ClientBuilder;
+use yii\mail\MailerInterface;
+use shop\cart\Cart;
+use shop\cart\cost\calculator\DynamicCost;
+use shop\cart\cost\calculator\SimpleCost;
+use shop\cart\storage\HybridStorage;
 
 class Bootstrap implements BootstrapInterface
 {
     public function bootstrap($app)
 	{
         $container = \Yii::$container;
+        
+        $container->setSingleton(MailerInterface::class, function () use ($app) {
+            return $app->mailer;
+        });
 
         $container->setSingleton(Queue::class, function () use ($app) {
             return $app->get('queue');
@@ -35,6 +44,13 @@ class Bootstrap implements BootstrapInterface
 
         $container->setSingleton(Client::class, function () {
             return ClientBuilder::create()->build();
+        });
+
+        $container->setSingleton(Cart::class, function () use ($app) {
+            return new Cart(
+                new HybridStorage($app->get('user'), 'cart', 3600 * 24, $app->db),
+                new DynamicCost(new SimpleCost())
+            );
         });
 	}
 }

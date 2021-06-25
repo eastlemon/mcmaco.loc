@@ -1,7 +1,7 @@
 <?php
 
-use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
+use yii\bootstrap4\Html;
+use yii\bootstrap4\ActiveForm;
 use yii\helpers\Url;
 
 $this->title = 'Login';
@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <p><strong>Register Account</strong></p>
             <p>By creating an account you will be able to shop faster, be up to date on an order's status,
                 and keep track of the orders you have previously made.</p>
-            <a href="<?= Html::encode(Url::to(['/signup/request'])) ?>" class="btn btn-primary">Continue</a>
+            <a href="<?= Html::encode(Url::to(['/signup'])) ?>" class="btn btn-primary">Continue</a>
         </div>
         <div class="well">
             <h2>Social Login</h2>
@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= $form->field($model, 'rememberMe')->checkbox() ?>
 
             <div style="color:#999;margin:1em 0">
-                If you forgot your password you can <?= Html::a('reset it', ['reset/request']) ?>.
+                If you forgot your password you can <?= Html::a('reset it', ['/reset']) ?>.
             </div>
 
             <div>

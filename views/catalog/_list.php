@@ -1,27 +1,28 @@
 <?php
 
-use yii\helpers\Html;
+use yii\bootstrap4\Html;
 use yii\helpers\Url;
-use yii\widgets\LinkPager;
+use yii\bootstrap4\LinkPager;
+use rmrevin\yii\fontawesome\FAS;
 
 ?>
 
 <div class="row">
     <div class="col-md-2 col-sm-6 hidden-xs">
         <div class="btn-group btn-group-sm">
-            <button type="button" id="list-view" class="btn btn-default" data-toggle="tooltip" title="List"><i class="fa fa-th-list"></i></button>
-            <button type="button" id="grid-view" class="btn btn-default" data-toggle="tooltip" title="Grid"><i class="fa fa-th"></i></button>
+            <button type="button" id="list-view" class="btn btn-primary" data-toggle="tooltip" title="<?= Yii::t('shop', 'List') ?>"><?= Html::a(FAS::icon('list')) ?></button>
+            <button type="button" id="grid-view" class="btn btn-primary" data-toggle="tooltip" title="<?= Yii::t('shop', 'Grid') ?>"><?= Html::a(FAS::icon('th')) ?></button>
         </div>
     </div>
     <div class="col-md-3 col-sm-6">
         <div class="form-group">
-            <a href="/index.php?route=product/compare" id="compare-total" class="btn btn-link">Product Compare (0)</a>
+            <a href="/index.php?route=product/compare" class="btn btn-warning btn-sm"><?= Yii::t('shop', 'Product Compare ({compare})', ['compare' => 0]) ?></a>
         </div>
     </div>
     <div class="col-md-4 col-xs-6">
         <div class="form-group input-group input-group-sm">
-            <label class="input-group-addon" for="input-sort">Sort By:</label>
-            <select id="input-sort" class="form-control" onchange="location = this.value;">
+            <div class="input-group-prepend"><span class="input-group-text" id="basic-sort"><?= Yii::t('shop', 'Sort By') ?>:</span></div>
+            <select id="input-sort" class="custom-select" onchange="location = this.value;" aria-describedby="basic-sort">
                 <?php
                 $values = [
                     '' => 'Default',
@@ -42,8 +43,8 @@ use yii\widgets\LinkPager;
     </div>
     <div class="col-md-3 col-xs-6">
         <div class="form-group input-group input-group-sm">
-            <label class="input-group-addon" for="input-limit">Show:</label>
-            <select id="input-limit" class="form-control" onchange="location = this.value;">
+            <div class="input-group-prepend"><span class="input-group-text" id="basic-limit"><?= Yii::t('shop', 'Show') ?>:</span></div>
+            <select id="input-limit" class="custom-select" onchange="location = this.value;" aria-describedby="basic-limit">
                 <?php
                 $values = [15, 25, 50, 75, 100];
                 $current = $dataProvider->getPagination()->getPageSize();
@@ -57,7 +58,7 @@ use yii\widgets\LinkPager;
 </div>
 
 <div class="row">
-    <?php foreach ($dataProvider->getModels() as $product): ?>
+    <?php foreach ($dataProvider->getModels() as $product) : ?>
         <?= $this->render('_product', [
             'product' => $product
         ]) ?>
@@ -70,5 +71,10 @@ use yii\widgets\LinkPager;
             'pagination' => $dataProvider->getPagination(),
         ]) ?>
     </div>
-    <div class="col-sm-6 text-right">Showing <?= $dataProvider->getCount() ?> of <?= $dataProvider->getTotalCount() ?></div>
+    <div class="col-sm-6 text-right">
+        <?= Yii::t('shop', 'Showing {count} of {total}', [
+            'count' => $dataProvider->getCount(),
+            'total' => $dataProvider->getTotalCount(),
+        ]) ?>
+    </div>
 </div>

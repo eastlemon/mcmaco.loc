@@ -19,7 +19,7 @@ class ResetController extends Controller
         $this->service = $service;
     }
 
-    public function actionRequest()
+    public function actionIndex()
     {
         $form = new PasswordResetRequestForm();
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {

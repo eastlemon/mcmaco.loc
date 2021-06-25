@@ -94,7 +94,6 @@ class Product extends ActiveRecord implements AggregateRoot
         return $this->status == self::STATUS_ACTIVE;
     }
 
-
     public function isDraft(): bool
     {
         return $this->status == self::STATUS_DRAFT;

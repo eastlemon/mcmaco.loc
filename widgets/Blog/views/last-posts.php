@@ -9,7 +9,7 @@ use yii\helpers\Url;
 
 <div class="row">
     <?php foreach ($posts as $post): ?>
-        <?php $url = Url::to(['/blog/post/post', 'id' =>$post->id]); ?>
+        <?php $url = Url::to(['/post/post', 'id' => $post->id]); ?>
         <div class="product-layout col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <div class="product-thumb transition">
                 <?php if ($post->photo): ?>

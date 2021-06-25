@@ -1,13 +1,13 @@
 <?php
 
-use yii\helpers\Html;
+use yii\bootstrap4\Html;
 
 $this->title = $category->getSeoTitle();
 
 $this->registerMetaTag(['name' =>'description', 'content' => $category->meta->description]);
 $this->registerMetaTag(['name' =>'keywords', 'content' => $category->meta->keywords]);
 
-$this->params['breadcrumbs'][] = ['label' => 'Catalog', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('shop', 'Catalog'), 'url' => ['/catalog']];
 foreach ($category->parents as $parent) {
     if (!$parent->isRoot()) {
         $this->params['breadcrumbs'][] = ['label' => $parent->name, 'url' => ['category', 'id' => $parent->id]];

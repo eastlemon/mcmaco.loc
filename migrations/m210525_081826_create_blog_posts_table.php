@@ -24,6 +24,7 @@ class m210525_081826_create_blog_posts_table extends Migration
             'photo' => $this->string(),
             'status' => $this->integer()->notNull(),
             'meta_json' => 'JSON NOT NULL',
+            'comments_count' => $this->integer()->notNull(),
         ], $tableOptions);
 
         $this->createIndex('{{%idx-blog_posts-category_id}}', '{{%blog_posts}}', 'category_id');

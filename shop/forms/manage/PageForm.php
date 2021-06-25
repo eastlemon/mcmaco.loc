@@ -3,7 +3,7 @@
 namespace shop\forms\manage;
 
 use shop\entities\Page;
-use shop\forms\CompositeForm;
+use elisdn\compositeForm\CompositeForm;
 use shop\validators\SlugValidator;
 use yii\helpers\ArrayHelper;
 

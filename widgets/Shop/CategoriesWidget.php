@@ -26,7 +26,7 @@ class CategoriesWidget extends Widget
             $active = $this->active && ($this->active->id == $view->category->id || $this->active->isChildOf($view->category));
             return Html::a(
                 $indent . Html::encode($view->category->name) . ' (' . $view->count . ')',
-                ['/shop/catalog/category', 'id' => $view->category->id],
+                ['/catalog/category', 'id' => $view->category->id],
                 ['class' => $active ? 'list-group-item active' : 'list-group-item']
             );
         }, $this->categories->getTreeWithSubsOf($this->active))), [

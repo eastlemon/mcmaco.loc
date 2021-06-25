@@ -12,7 +12,7 @@ $this->title = $product->name;
 $this->registerMetaTag(['name' =>'description', 'content' => $product->meta->description]);
 $this->registerMetaTag(['name' =>'keywords', 'content' => $product->meta->keywords]);
 
-$this->params['breadcrumbs'][] = ['label' => 'Catalog', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('shop', 'Catalog'), 'url' => ['/catalog']];
 foreach ($product->category->parents as $parent) {
     if (!$parent->isRoot()) {
         $this->params['breadcrumbs'][] = ['label' => $parent->name, 'url' => ['category', 'id' => $parent->id]];
@@ -45,7 +45,6 @@ MagnificPopupAsset::register($this);
                 <?php endif; ?>
             <?php endforeach; ?>
         </ul>
-
         <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <a class="nav-item nav-link active" id="nav-description-tab" data-toggle="tab" href="#nav-description" role="tab" aria-controls="nav-description" aria-selected="true">Description</a>
@@ -86,7 +85,7 @@ MagnificPopupAsset::register($this);
 
                     <div class="panel-panel-info">
                         <div class="panel-body">
-                            Please <?= Html::a('Log In', ['/auth/auth/login']) ?> for writing a review.
+                            Please <?= Html::a('Log In', ['/auth/login']) ?> for writing a review.
                         </div>
                     </div>
 
@@ -109,7 +108,7 @@ MagnificPopupAsset::register($this);
     </div>
     <div class="col-sm-4">
         <p class="btn-group">
-            <button type="button" data-toggle="tooltip" class="btn btn-primary" title="Add to Wish List" href="<?= Url::to(['/cabinet/wishlist/add', 'id' => $product->id]) ?>" data-method="post"><?= Html::a(FAS::icon('heart')) ?></button>
+            <button type="button" data-toggle="tooltip" class="btn btn-danger" title="Add to Wish List" href="<?= Url::to(['/cabinet/wishlist/add', 'id' => $product->id]) ?>" data-method="post"><?= Html::a(FAS::icon('heart')) ?></button>
             <button type="button" data-toggle="tooltip" class="btn btn-warning" title="Compare this Product" onclick="compare.add(<?= $product->id ?>);"><?= Html::a(FAS::icon('greater-than-equal')) ?></button>
         </p>
         <h1><?= Html::encode($product->name) ?></h1>
@@ -136,7 +135,7 @@ MagnificPopupAsset::register($this);
                 <h3>Available Options</h3>
 
                 <?php $form = ActiveForm::begin([
-                    'action' => ['/shop/cart/add', 'id' => $product->id],
+                    'action' => ['/cart/add', 'id' => $product->id],
                 ]) ?>
 
                 <?php if ($modifications = $cartForm->modificationsList()): ?>
@@ -146,7 +145,7 @@ MagnificPopupAsset::register($this);
                 <?= $form->field($cartForm, 'quantity')->textInput() ?>
 
                 <div class="form-group">
-                    <?= Html::submitButton('Add to Cart', ['class' => 'btn btn-primary btn-lg btn-block']) ?>
+                    <?= Html::submitButton(FAS::icon('cart-plus') . '&nbsp;' . Yii::t('shop', 'Add to Cart'), ['class' => 'btn btn-primary btn-lg btn-block']) ?>
                 </div>
 
                 <?php ActiveForm::end() ?>

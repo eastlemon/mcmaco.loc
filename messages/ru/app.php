@@ -1,5 +1,7 @@
 <?php
 return [
+    'Featured' => 'Рекомендуемые',
+    'Last Posts' => 'Последние сообщения',
     'The requested page does not exist.' => 'Ошибка 404 - страница не найдена!',
     'Are you sure you want to delete this item?' => 'Вы уверены, что хотите удалить этот элемент?',
     'Please choose your new password:' => 'Пожалуйста, выберите новый пароль',

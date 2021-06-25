@@ -1,5 +1,7 @@
 <?php
 return [
+    'Add to Cart' => 'Добавить в корзину',
+    'Catalog' => 'Каталог',
     'Category ID' => 'Категория',
     'Required' => 'Обязательно',
     'Type' => 'Тип',

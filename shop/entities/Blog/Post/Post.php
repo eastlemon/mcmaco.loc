@@ -2,6 +2,7 @@
 
 namespace shop\entities\Blog\Post;
 
+use Yii;
 use shop\entities\Blog\Post\Comment;
 use lhs\Yii2SaveRelationsBehavior\SaveRelationsBehavior;
 use shop\entities\behaviors\MetaBehavior;

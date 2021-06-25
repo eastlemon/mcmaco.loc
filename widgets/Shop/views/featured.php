@@ -4,6 +4,7 @@ use shop\helpers\PriceHelper;
 use yii\helpers\Html;
 use yii\helpers\StringHelper;
 use yii\helpers\Url;
+use rmrevin\yii\fontawesome\FAS;
 
 ?>
 
@@ -30,10 +31,10 @@ use yii\helpers\Url;
                             <?php endif; ?>
                         </p>
                     </div>
-                    <div class="button-group">
-                        <button type="button" href="<?= Url::to(['/cart/add', 'id' => $product->id]) ?>" data-method="post"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">Add to Cart</span></button>
-                        <button type="button" data-toggle="tooltip" title="Add to Wish List" href="<?= Url::to(['/cabinet/wishlist/add', 'id' => $product->id]) ?>" data-method="post"><i class="fa fa-heart"></i></button>
-                        <button type="button" data-toggle="tooltip" title="Compare this Product" onclick="compare.add('<?= $product->id ?>');"><i class="fa fa-exchange"></i></button>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary" data-toggle="tooltip" title="<?= Yii::t('shop', 'Add to Cart') ?>"  href="<?= Url::to(['/cart/add', 'id' => $product->id]) ?>" data-method="post"><?= Html::a(FAS::icon('cart-plus')) ?></button>
+                        <button type="button" class="btn btn-danger" data-toggle="tooltip" title="<?= Yii::t('shop', 'Add to Wish List') ?>" href="<?= Url::to(['/cabinet/wishlist/add', 'id' => $product->id]) ?>" data-method="post"><?= FAS::icon('heart') ?></button>
+                        <button type="button" class="btn btn-warning" data-toggle="tooltip" title="<?= Yii::t('shop', 'Compare this Product') ?>" onclick="compare.add('<?= $product->id ?>');"><?= FAS::icon('greater-than-equal') ?></button>
                     </div>
                 </div>
             </div>
