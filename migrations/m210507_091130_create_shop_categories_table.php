@@ -46,6 +46,8 @@ class m210507_091130_create_shop_categories_table extends Migration
      */
     public function safeDown()
     {
+        $this->dropIndex('{{%idx-shop_categories-slug}}', '{{%shop_categories}}');
+        
         $this->dropTable('{{%shop_categories}}');
     }
 }

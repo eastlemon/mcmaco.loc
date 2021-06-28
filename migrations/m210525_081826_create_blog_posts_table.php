@@ -37,6 +37,10 @@ class m210525_081826_create_blog_posts_table extends Migration
      */
     public function safeDown()
     {
+        $this->dropForeignKey('{{%fk-blog_posts-category_id}}', '{{%blog_posts}}');
+
+        $this->dropIndex('{{%idx-blog_posts-category_id}}', '{{%blog_posts}}');
+
         $this->dropTable('{{%blog_posts}}');
     }
 }

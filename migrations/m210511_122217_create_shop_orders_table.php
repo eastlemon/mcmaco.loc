@@ -45,6 +45,12 @@ class m210511_122217_create_shop_orders_table extends Migration
      */
     public function safeDown()
     {
+        $this->dropForeignKey('{{%fk-shop_orders-delivery_method_id}}', '{{%shop_orders}}');
+        $this->dropForeignKey('{{%fk-shop_orders-user_id}}', '{{%shop_orders}}');
+
+        $this->dropIndex('{{%idx-shop_orders-delivery_method_id}}', '{{%shop_orders}}');
+        $this->dropIndex('{{%idx-shop_orders-user_id}}', '{{%shop_orders}}');
+
         $this->dropTable('{{%shop_orders}}');
     }
 }

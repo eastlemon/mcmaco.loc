@@ -25,6 +25,8 @@ class m210508_163758_add_shop_product_main_photo_field extends Migration
     public function safeDown()
     {
         $this->dropForeignKey('{{%fk-shop_products-main_photo_id}}', '{{%shop_products}}');
+        
+        $this->dropIndex('{{%idx-shop_products-main_photo_id}}', '{{%shop_products}}');
 
         $this->dropColumn('{{%shop_products}}', 'main_photo_id');
     }

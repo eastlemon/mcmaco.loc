@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `{{%shop_tags}}`.
  */
-class m210511_122501_create_shop_tags_table extends Migration
+class m210508_144427_create_shop_tags_table extends Migration
 {
     /**
      * {@inheritdoc}
@@ -28,6 +28,8 @@ class m210511_122501_create_shop_tags_table extends Migration
      */
     public function safeDown()
     {
+        $this->dropIndex('{{%idx-shop_tags-slug}}', '{{%shop_tags}}');
+
         $this->dropTable('{{%shop_tags}}');
     }
 }

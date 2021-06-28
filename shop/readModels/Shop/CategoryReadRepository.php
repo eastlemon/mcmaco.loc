@@ -2,20 +2,12 @@
 
 namespace shop\readModels\Shop;
 
-use Elasticsearch\Client;
 use shop\entities\Shop\Category;
 use shop\readModels\Shop\views\CategoryView;
 use yii\helpers\ArrayHelper;
 
 class CategoryReadRepository
 {
-    private $client;
-
-    public function __construct(Client $client)
-    {
-        $this->client = $client;
-    }
-
     public function getRoot(): Category
     {
         return Category::find()->roots()->one();

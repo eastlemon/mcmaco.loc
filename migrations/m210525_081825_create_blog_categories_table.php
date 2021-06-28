@@ -23,6 +23,8 @@ class m210525_081825_create_blog_categories_table extends Migration
 
     public function safeDown()
     {
+        $this->dropIndex('{{%idx-blog_categories-slug}}', '{{%blog_categories}}');
+
         $this->dropTable('{{%blog_categories}}');
     }
 }

@@ -34,6 +34,12 @@ class m210508_162449_create_shop_values_table extends Migration
      */
     public function safeDown()
     {
+        $this->dropForeignKey('{{%fk-shop_values-characteristic_id}}', '{{%shop_values}}');
+        $this->dropForeignKey('{{%fk-shop_values-product_id}}', '{{%shop_values}}');
+
+        $this->dropIndex('{{%idx-shop_values-characteristic_id}}', '{{%shop_values}}');
+        $this->dropIndex('{{%idx-shop_values-product_id}}', '{{%shop_values}}');
+
         $this->dropTable('{{%shop_values}}');
     }
 }

@@ -33,6 +33,12 @@ class m210508_144403_create_shop_category_assignments_table extends Migration
      */
     public function safeDown()
     {
+        $this->dropForeignKey('{{%fk-shop_category_assignments-category_id}}', '{{%shop_category_assignments}}');
+        $this->dropForeignKey('{{%fk-shop_category_assignments-product_id}}', '{{%shop_category_assignments}}');
+
+        $this->dropIndex('{{%idx-shop_category_assignments-category_id}}', '{{%shop_category_assignments}}');
+        $this->dropIndex('{{%idx-shop_category_assignments-product_id}}', '{{%shop_category_assignments}}');
+
         $this->dropTable('{{%shop_category_assignments}}');
     }
 }

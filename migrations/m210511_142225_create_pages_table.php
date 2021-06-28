@@ -44,6 +44,8 @@ class m210511_142225_create_pages_table extends Migration
      */
     public function safeDown()
     {
+        $this->dropIndex('{{%idx-pages-slug}}', '{{%pages}}');
+
         $this->dropTable('{{%pages}}');
     }
 }

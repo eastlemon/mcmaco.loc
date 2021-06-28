@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `{{%shop_photos}}`.
  */
-class m210508_162756_create_shop_photos_table extends Migration
+class m210508_114007_create_shop_photos_table extends Migration
 {
     /**
      * {@inheritdoc}
@@ -31,6 +31,10 @@ class m210508_162756_create_shop_photos_table extends Migration
      */
     public function safeDown()
     {
+        $this->dropForeignKey('{{%fk-shop_photos-product_id}}', '{{%shop_photos}}');
+
+        $this->dropIndex('{{%idx-shop_photos-product_id}}', '{{%shop_photos}}');
+
         $this->dropTable('{{%shop_photos}}');
     }
 }

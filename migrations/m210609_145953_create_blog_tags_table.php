@@ -28,6 +28,8 @@ class m210609_145953_create_blog_tags_table extends Migration
      */
     public function safeDown()
     {
+        $this->dropIndex('{{%idx-blog_tags-slug}}', '{{%blog_tags}}');
+
         $this->dropTable('{{%blog_tags}}');
     }
 }

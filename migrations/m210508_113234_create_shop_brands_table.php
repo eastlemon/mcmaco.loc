@@ -29,6 +29,8 @@ class m210508_113234_create_shop_brands_table extends Migration
      */
     public function safeDown()
     {
+        $this->dropIndex('{{%idx-shop_brands-slug}}', '{{%shop_brands}}');
+        
         $this->dropTable('{{%shop_brands}}');
     }
 }

@@ -33,6 +33,12 @@ class m210609_151934_create_blog_tag_assignments_table extends Migration
      */
     public function safeDown()
     {
+        $this->dropForeignKey('{{%fk-blog_tag_assignments-tag_id}}', '{{%blog_tag_assignments}}');
+        $this->dropForeignKey('{{%fk-blog_tag_assignments-post_id}}', '{{%blog_tag_assignments}}');
+
+        $this->dropIndex('{{%idx-blog_tag_assignments-tag_id}}', '{{%blog_tag_assignments}}');
+        $this->dropIndex('{{%idx-blog_tag_assignments-post_id}}', '{{%blog_tag_assignments}}');
+        
         $this->dropTable('{{%blog_tag_assignments}}');
     }
 }

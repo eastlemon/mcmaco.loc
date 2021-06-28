@@ -20,6 +20,7 @@ class m210508_162344_create_shop_modifications_table extends Migration
             'code' => $this->string()->notNull(),
             'name' => $this->string()->notNull(),
             'price' => $this->integer(),
+            'quantity' => $this->integer()->notNull(),
         ], $tableOptions);
 
         $this->createIndex('{{%idx-shop_modifications-code}}', '{{%shop_modifications}}', 'code');
@@ -34,6 +35,12 @@ class m210508_162344_create_shop_modifications_table extends Migration
      */
     public function safeDown()
     {
+        $this->dropForeignKey('{{%fk-shop_modifications-product_id}}', '{{%shop_modifications}}');
+
+        $this->dropIndex('{{%idx-shop_modifications-product_id}}', '{{%shop_modifications}}');
+        $this->dropIndex('{{%idx-shop_modifications-product_id-code}}', '{{%shop_modifications}}');
+        $this->dropIndex('{{%idx-shop_modifications-code}}', '{{%shop_modifications}}');
+
         $this->dropTable('{{%shop_modifications}}');
     }
 }

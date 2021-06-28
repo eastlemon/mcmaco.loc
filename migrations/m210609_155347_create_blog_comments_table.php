@@ -39,6 +39,14 @@ class m210609_155347_create_blog_comments_table extends Migration
      */
     public function safeDown()
     {
+        $this->dropForeignKey('{{%fk-blog_comments-parent_id}}', '{{%blog_comments}}');
+        $this->dropForeignKey('{{%fk-blog_comments-user_id}}', '{{%blog_comments}}');
+        $this->dropForeignKey('{{%fk-blog_comments-post_id}}', '{{%blog_comments}}');
+
+        $this->dropIndex('{{%idx-blog_comments-parent_id}}', '{{%blog_comments}}');
+        $this->dropIndex('{{%idx-blog_comments-user_id}}', '{{%blog_comments}}');
+        $this->dropIndex('{{%idx-blog_comments-post_id}}', '{{%blog_comments}}');
+
         $this->dropTable('{{%blog_comments}}');
     }
 }
