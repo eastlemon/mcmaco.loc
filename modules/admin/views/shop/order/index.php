@@ -1,12 +1,9 @@
 <?php
-
 use shop\entities\Shop\Order\Order;
 use shop\helpers\OrderHelper;
 use yii\bootstrap4\Html;
 use yii\grid\GridView;
-
 ?>
-
 <div class="order-index">
     <div class="box">
         <div class="box-body">
@@ -29,6 +26,7 @@ use yii\grid\GridView;
                             return OrderHelper::statusLabel($model->current_status);
                         },
                         'format' => 'raw',
+                        'label' => Yii::t('shop', 'Status'),
                     ],
                     [
                         'class' => 'yii\grid\ActionColumn',

@@ -23,7 +23,7 @@ use yii\bootstrap4\ActiveForm;
                         <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
                     </div>
                 </div>
-                <?= $form->field($model, 'description')->widget(CKEditor::className()) ?>
+                <?= $form->field($model, 'description')->widget(CKEditor::className(), ['preset' => 'basic']) ?>
             </div>
         </div>
         <div class="box box-default">

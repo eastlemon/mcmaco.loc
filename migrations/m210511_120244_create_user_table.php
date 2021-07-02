@@ -22,10 +22,13 @@ class m210511_120244_create_user_table extends Migration
             'password_reset_token' => $this->string()->unique(),
             'email' => $this->string()->notNull()->unique(),
             'email_confirm_token' => $this->string()->unique(),
+            'phone' => $this->string()->notNull(),
             'status' => $this->smallInteger()->notNull()->defaultValue(10),
             'created_at' => $this->integer()->unsigned()->notNull(),
             'updated_at' => $this->integer()->unsigned()->notNull(),
         ], $tableOptions);
+
+        $this->createIndex('{{%idx-user-phone}}', '{{%user}}', 'phone', true);
     }
 
     /**
@@ -33,6 +36,8 @@ class m210511_120244_create_user_table extends Migration
      */
     public function safeDown()
     {
+        $this->dropIndex('{{%idx-user-phone}}', '{{%user}}');
+
         $this->dropTable('{{%user}}');
     }
 }

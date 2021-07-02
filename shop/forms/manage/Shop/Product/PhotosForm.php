@@ -2,6 +2,7 @@
 
 namespace shop\forms\manage\Shop\Product;
 
+use Yii;
 use yii\base\Model;
 use yii\web\UploadedFile;
 
@@ -26,5 +27,12 @@ class PhotosForm extends Model
             return true;
         }
         return false;
+    }
+    
+    public function attributeLabels()
+    {
+        return [
+            'files' => Yii::t('shop', 'Files'),
+        ];
     }
 }

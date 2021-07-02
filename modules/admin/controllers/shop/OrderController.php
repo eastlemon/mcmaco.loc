@@ -1,5 +1,4 @@
 <?php
-
 namespace app\modules\admin\controllers\shop;
 
 use shop\forms\manage\Shop\Order\OrderEditForm;
@@ -65,10 +64,6 @@ class OrderController extends Controller
     {
         $this->nav->title = static::titleIndex();
         $this->nav->crumbs = static::crumbsToIndex();
-        /*$this->nav->menuRight = [
-            ['label' => Yii::t('shop', 'Options')],
-            //['label' => static::titleCreate(), 'url' => ['/admin/shop/order/create']],
-        ];*/
 
         $searchModel = new OrderSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);

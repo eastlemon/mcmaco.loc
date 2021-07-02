@@ -2,6 +2,7 @@
 
 namespace shop\forms\manage\Shop\Product;
 
+use Yii;
 use shop\entities\Shop\Product\Product;
 use yii\base\Model;
 
@@ -22,6 +23,13 @@ class QuantityForm extends Model
         return [
             [['quantity'], 'required'],
             [['quantity'], 'integer', 'min' => 0],
+        ];
+    }
+    
+    public function attributeLabels()
+    {
+        return [
+            'quantity' => Yii::t('shop', 'Quantity'),
         ];
     }
 }

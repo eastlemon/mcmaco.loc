@@ -1,5 +1,4 @@
 <?php
-
 use kartik\file\FileInput;
 use shop\entities\Shop\Product\Modification;
 use shop\entities\Shop\Product\Value;
@@ -12,7 +11,6 @@ use yii\helpers\ArrayHelper;
 use yii\bootstrap4\Html;
 use yii\widgets\DetailView;
 use rmrevin\yii\fontawesome\FAS;
-
 ?>
 
 <div class="product-view">

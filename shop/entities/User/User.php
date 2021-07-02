@@ -18,6 +18,20 @@ class User extends ActiveRecord implements AggregateRoot
     const STATUS_WAIT = 0;
     const STATUS_ACTIVE = 10;
 
+    public function attributeLabels(): array
+    {
+        return [
+            'id' => Yii::t('shop', 'Id'),
+            'date_from' => Yii::t('shop', 'Date From'),
+            'date_to' => Yii::t('shop', 'Date To'),
+            'username' => Yii::t('shop', 'Username'),
+            'email' => Yii::t('shop', 'Email'),
+            'status' => Yii::t('shop', 'Status'),
+            'role' => Yii::t('shop', 'Role'),
+            'created_at' => Yii::t('shop', 'Created At'),
+        ];
+    }
+
     public static function create(string $username, string $email, string $phone, string $password): self
     {
         $user = new User();

@@ -1,5 +1,6 @@
 <?php
 return [
+    'Login' => 'Логин',
     'Featured' => 'Рекомендуемые',
     'Last Posts' => 'Последние сообщения',
     'The requested page does not exist.' => 'Ошибка 404 - страница не найдена!',

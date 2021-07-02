@@ -6,7 +6,7 @@ use shop\entities\Blog\Post\Value;
 use shop\helpers\PriceHelper;
 use shop\helpers\PostHelper;
 use shop\helpers\WeightHelper;
-use yii\bootstrap\ActiveForm;
+use yii\bootstrap4\ActiveForm;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;

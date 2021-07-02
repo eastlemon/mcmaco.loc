@@ -2,6 +2,7 @@
 
 namespace shop\forms\manage\Shop\Product;
 
+use Yii;
 use shop\entities\Shop\Category;
 use shop\entities\Shop\Product\Product;
 use yii\base\Model;
@@ -41,5 +42,13 @@ class CategoriesForm extends Model
     {
         $this->others = array_filter((array)$this->others);
         return parent::beforeValidate();
+    }
+    
+    public function attributeLabels()
+    {
+        return [
+            'main' => Yii::t('shop', 'Main'),
+            'others' => Yii::t('shop', 'Others'),
+        ];
     }
 }

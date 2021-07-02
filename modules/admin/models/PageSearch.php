@@ -20,11 +20,7 @@ class PageSearch extends Model
             [['name', 'slug', 'title'], 'safe'],
         ];
     }
-
-    /**
-     * @param array $params
-     * @return ActiveDataProvider
-     */
+    
     public function search(array $params): ActiveDataProvider
     {
         $query = Page::find()->andWhere(['>', 'depth', 0]);

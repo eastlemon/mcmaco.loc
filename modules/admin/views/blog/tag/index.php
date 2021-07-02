@@ -5,10 +5,6 @@ use yii\grid\ActionColumn;
 use yii\helpers\Html;
 use yii\grid\GridView;
 
-/* @var $this yii\web\View */
-/* @var $searchModel backend\forms\Blog\TagSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
-
 $this->title = 'Tags';
 $this->params['breadcrumbs'][] = $this->title;
 ?>

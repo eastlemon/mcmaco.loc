@@ -2,6 +2,7 @@
 
 namespace shop\forms\manage\Shop\Product;
 
+use Yii;
 use shop\entities\Shop\Product\Product;
 use shop\forms\manage\MetaForm;
 use yii\base\Model;
@@ -31,6 +32,14 @@ class PriceForm extends Model
         return [
             [['new'], 'required'],
             [['old', 'new'], 'integer', 'min' => 0],
+        ];
+    }
+    
+    public function attributeLabels()
+    {
+        return [
+            'old' => Yii::t('shop', 'Old'),
+            'new' => Yii::t('shop', 'New'),
         ];
     }
 }

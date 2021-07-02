@@ -1,5 +1,4 @@
 <?php
-
 namespace app\modules\admin\models\Shop;
 
 use shop\entities\Shop\Order\Order;
@@ -18,10 +17,6 @@ class OrderSearch extends Model
         ];
     }
 
-    /**
-     * @param array $params
-     * @return ActiveDataProvider
-     */
     public function search(array $params): ActiveDataProvider
     {
         $query = Order::find();

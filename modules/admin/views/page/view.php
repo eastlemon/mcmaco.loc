@@ -1,9 +1,6 @@
 <?php
-
 use yii\widgets\DetailView;
-
 ?>
-
 <div class="page-view">
     <div class="box">
         <div class="box-header with-border"><?= Yii::t('shop', 'Common') ?></div>

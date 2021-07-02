@@ -1,7 +1,7 @@
 <?php
-
 namespace shop\forms\manage;
 
+use Yii;
 use shop\entities\Page;
 use elisdn\compositeForm\CompositeForm;
 use shop\validators\SlugValidator;
@@ -53,5 +53,15 @@ class PageForm extends CompositeForm
     public function internalForms(): array
     {
         return ['meta'];
+    }
+
+    public function attributeLabels(): array
+    {
+        return [
+            'title' => Yii::t('shop', 'Title'),
+            'slug' => Yii::t('shop', 'Slug'),
+            'content' => Yii::t('shop', 'Content'),
+            'parentId' => Yii::t('shop', 'Parent Id'),
+        ];
     }
 }

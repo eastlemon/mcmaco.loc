@@ -2,6 +2,7 @@
 
 namespace shop\forms\manage\Shop;
 
+use Yii;
 use shop\entities\Shop\Tag;
 use shop\validators\SlugValidator;
 use yii\base\Model;
@@ -30,6 +31,14 @@ class TagForm extends Model
             [['name', 'slug'], 'string', 'max' => 255],
             ['slug', SlugValidator::class],
             [['name', 'slug'], 'unique', 'targetClass' => Tag::class, 'filter' => $this->_tag ? ['<>', 'id', $this->_tag->id] : null]
+        ];
+    }
+    
+    public function attributeLabels()
+    {
+        return [
+            'name' => Yii::t('shop', 'Name'),
+            'slug' => Yii::t('shop', 'Slug'),
         ];
     }
 }

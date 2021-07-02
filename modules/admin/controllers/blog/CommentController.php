@@ -2,7 +2,7 @@
 
 namespace app\modules\admin\controllers\blog;
 
-use backend\forms\Blog\CommentSearch;
+use app\modules\admin\models\Blog\CommentSearch;
 use shop\forms\manage\Blog\Post\CommentEditForm;
 use shop\useCases\manage\Blog\CommentManageService;
 use Yii;

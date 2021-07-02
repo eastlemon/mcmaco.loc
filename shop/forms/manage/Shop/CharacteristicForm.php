@@ -2,6 +2,7 @@
 
 namespace shop\forms\manage\Shop;
 
+use Yii;
 use shop\entities\Shop\Characteristic;
 use shop\helpers\CharacteristicHelper;
 use yii\base\Model;
@@ -56,5 +57,17 @@ class CharacteristicForm extends Model
     public function getVariants(): array
     {
         return preg_split('#\s+#i', $this->textVariants);
+    }
+
+    public function attributeLabels(): array
+    {
+        return [
+            'name' => Yii::t('shop', 'Name'),
+            'type' => Yii::t('shop', 'Type'),
+            'sort' => Yii::t('shop', 'Sort'),
+            'required' => Yii::t('shop', 'Required'),
+            'default' => Yii::t('shop', 'Default'),
+            'textVariants' => Yii::t('shop', 'Text Variants'),
+        ];
     }
 }

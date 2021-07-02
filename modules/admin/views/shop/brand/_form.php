@@ -1,10 +1,7 @@
 <?php
-
 use yii\bootstrap4\Html;
 use yii\bootstrap4\ActiveForm;
-
 ?>
-
 <div class="brand-form">
     <?php $form = ActiveForm::begin(); ?>
         <div class="box box-default">

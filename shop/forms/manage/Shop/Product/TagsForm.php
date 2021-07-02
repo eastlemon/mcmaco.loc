@@ -2,6 +2,7 @@
 
 namespace shop\forms\manage\Shop\Product;
 
+use Yii;
 use shop\entities\Shop\Product\Product;
 use shop\entities\Shop\Tag;
 use yii\base\Model;
@@ -42,5 +43,13 @@ class TagsForm extends Model
     {
         $this->existing = array_filter((array)$this->existing);
         return parent::beforeValidate();
+    }
+    
+    public function attributeLabels()
+    {
+        return [
+            'existing' => Yii::t('shop', 'Existing'),
+            'textNew' => Yii::t('shop', 'Text New'),
+        ];
     }
 }

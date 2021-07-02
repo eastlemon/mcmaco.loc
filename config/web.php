@@ -110,12 +110,40 @@ $config = [
                 ],
             ],
         ],
+        /*'mailchimp' => [
+            'class' => MailchimpComponent::class,
+            'apiKey' => 'thry45354tg43'
+        ],*/
+        'formatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'timeZone' => 'Europe/Moscow',
+            'dateFormat' => 'php:d.m.Y',
+            'datetimeFormat' => 'php:d.m.Y H:i:s',
+            'timeFormat' => 'php:H:i:s',
+            'locale' => 'ru-RU', // your language locale
+            'defaultTimeZone' => 'Europe/Moscow', // time zone
+            'decimalSeparator' => '.',
+            'thousandSeparator' => ' ',
+            'currencyCode' => 'RUR',
+            /*'numberFormatterSymbols' => [
+                NumberFormatter::CURRENCY_SYMBOL => '&#8376;',
+            ],*/
+            /*'numberFormatterOptions' => [
+                NumberFormatter::MIN_FRACTION_DIGITS => 1,
+                NumberFormatter::MAX_FRACTION_DIGITS => 3,
+            ]*/
+        ],
     ],
     'modules' => [
         'admin' => [
             'class' => 'app\modules\admin\Module',
             'layout' => '@dmitrybtn/yimp/views/layout',
-        ]
+        ],
+        /*'mailchimp' => [
+            'class' => Mailchimp::class,
+            'showFirstname' => true,
+            'showLastname' => true
+        ],*/
     ],
     'defaultRoute' => 'site/index',
     'params' => $params,

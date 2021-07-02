@@ -1,11 +1,8 @@
 <?php
-
 use dosamigos\ckeditor\CKEditor;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\ActiveForm;
-
 ?>
-
 <div class="page-form">
     <?php $form = ActiveForm::begin(); ?>
         <div class="box box-default">
@@ -14,8 +11,7 @@ use yii\bootstrap4\ActiveForm;
                 <?= $form->field($model, 'parentId')->dropDownList($model->parentsList()) ?>
                 <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
                 <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
-                <?= $form->field($model, 'content')->widget(CKEditor::className()) ?>
-
+                <?= $form->field($model, 'content')->widget(CKEditor::className(), ['preset' => 'basic']) ?>
             </div>
         </div>
         <div class="box box-default">

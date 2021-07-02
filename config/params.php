@@ -11,4 +11,6 @@ return [
     'user.rememberMeDuration' => 3600 * 24 * 30,
     'cookieDomain' => '.mcmaco.loc',
     'app.caption' => 'McMaco - Интернет-магазин',
+    'mailChimpKey' => 'abc123abc123abc123abc123abc123-us1',
+    'mailChimpListId' => 'b1234346',
 ];

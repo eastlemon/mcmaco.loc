@@ -2,6 +2,7 @@
 
 namespace shop\forms\manage\Shop\Product;
 
+use Yii;
 use elisdn\compositeForm\CompositeForm;
 use shop\entities\Shop\Brand;
 use shop\entities\Shop\Characteristic;
@@ -60,5 +61,16 @@ class ProductCreateForm extends CompositeForm
     protected function internalForms(): array
     {
         return ['price', 'quantity', 'meta', 'photos', 'categories', 'tags', 'values'];
+    }
+    
+    public function attributeLabels()
+    {
+        return [
+            'brandId' => Yii::t('shop', 'Brand Id'),
+            'code' => Yii::t('shop', 'Code'),
+            'name' => Yii::t('shop', 'Name'),
+            'weight' => Yii::t('shop', 'Weight'),
+            'description' => Yii::t('shop', 'Description'),
+        ];
     }
 }

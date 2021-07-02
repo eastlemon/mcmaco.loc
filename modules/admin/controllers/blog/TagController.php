@@ -6,7 +6,7 @@ use shop\forms\manage\Blog\TagForm;
 use shop\useCases\manage\Blog\TagManageService;
 use Yii;
 use shop\entities\Blog\Tag;
-use backend\forms\Blog\TagSearch;
+use app\modules\admin\models\Blog\TagSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

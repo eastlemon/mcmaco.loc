@@ -1,12 +1,9 @@
 <?php
-
 use shop\entities\Shop\Category;
 use yii\bootstrap4\Html;
 use yii\grid\GridView;
 use rmrevin\yii\fontawesome\FAS;
-
 ?>
-
 <div class="category-index">
     <div class="box">
         <div class="box-body">

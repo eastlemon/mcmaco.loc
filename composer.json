@@ -40,7 +40,10 @@
         "mihaildev/yii2-elfinder": "*",
         "filsh/yii2-oauth2-server": "^2.0",
         "yiisoft/yii2-authclient": "~2.2.0",
-        "bower-asset/magnific-popup": "^1.1"
+        "bower-asset/magnific-popup": "^1.1",
+        "drewm/mailchimp-api": "^2.5",
+        "kartik-v/yii2-widgets": "*",
+        "kartik-v/yii2-field-range": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

@@ -3,7 +3,7 @@
 use kartik\file\FileInput;
 use dosamigos\ckeditor\CKEditor;
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
+use yii\bootstrap4\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model shop\forms\manage\Blog\Post\PostForm */
@@ -40,7 +40,7 @@ use yii\bootstrap\ActiveForm;
         <div class="box-body">
             <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'description')->textarea(['rows' => 5]) ?>
-            <?= $form->field($model, 'content')->widget(CKEditor::className()) ?>
+            <?= $form->field($model, 'content')->widget(CKEditor::className(), ['preset' => 'basic']) ?>
         </div>
     </div>
 
@@ -65,7 +65,7 @@ use yii\bootstrap\ActiveForm;
     </div>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('shop', 'Save'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

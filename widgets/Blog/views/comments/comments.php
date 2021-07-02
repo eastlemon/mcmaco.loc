@@ -1,18 +1,14 @@
 <?php
-
-use yii\bootstrap\ActiveForm;
+use yii\bootstrap4\ActiveForm;
 use yii\captcha\Captcha;
 use yii\helpers\Html;
-
 ?>
-
 <div id="comments" class="inner-bottom-xs">
     <h2>Comments</h2>
     <?php foreach ($items as $item): ?>
         <?= $this->render('_comment', ['item' => $item]) ?>
     <?php endforeach; ?>
 </div>
-
 <div id="reply-block" class="leave-reply">
     <?php $form = ActiveForm::begin([
         'action' => ['comment', 'id' => $post->id],
@@ -37,4 +33,4 @@ use yii\helpers\Html;
         form.detach().appendTo(comment.find('.reply-block:first'));
         return false;
     });
-"); ?>
+") ?>

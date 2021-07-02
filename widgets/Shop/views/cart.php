@@ -1,15 +1,13 @@
 <?php
-
-/* @var $cart \shop\cart\Cart */
-
 use shop\helpers\PriceHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use rmrevin\yii\fontawesome\FAS;
 ?>
 
 <div id="cart" class="btn-group btn-block">
     <button type="button" data-toggle="dropdown" data-loading-text="Loading..." class="btn btn-inverse btn-block btn-lg dropdown-toggle" aria-expanded="false">
-        <i class="fa fa-shopping-cart"></i>
+        <?= FAS::icon('cart') ?>
         <span id="cart-total"><?= $cart->getAmount() ?> item(s) - <?= PriceHelper::format($cart->getCost()->getTotal()) ?></span>
     </button>
     <ul class="dropdown-menu pull-right">
@@ -35,9 +33,7 @@ use yii\helpers\Url;
                     </td>
                     <td class="text-right">x <?= $item->getQuantity() ?></td>
                     <td class="text-right"><?= PriceHelper::format($item->getCost()) ?></td>
-                    <td class="text-center">
-                        <a href="<?= Url::to(['/cart/remove', 'id' => $item->getId()]) ?>" title="Remove" class="btn btn-danger btn-xs" data-method="post"><i class="fa fa-times"></i></a>
-                    </td>
+                    <td class="text-center"><a href="<?= Url::to(['/cart/remove', 'id' => $item->getId()]) ?>" title="Remove" class="btn btn-danger btn-xs" data-method="post"><?= FAS::icon('trash') ?></a></td>
                 </tr>
                 <?php endforeach ?>
             </table>
@@ -61,11 +57,11 @@ use yii\helpers\Url;
                         <td class="text-right"><?= PriceHelper::format($cost->getTotal()) ?></td>
                     </tr>
                 </table>
-                <p class="text-right"><a
-                        href="<?= Url::to(['/cart/index']) ?>"><strong><i
-                                class="fa fa-shopping-cart"></i> View Cart</strong></a>&nbsp;&nbsp;&nbsp;<a
-                        href="/index.php?route=checkout/checkout"><strong><i
-                                class="fa fa-share"></i> Checkout</strong></a></p>
+                <p class="text-right">
+                    <a href="<?= Url::to(['/cart/index']) ?>"><strong><?= FAS::icon('cart') ?> View Cart</strong></a>
+                    &nbsp;
+                    <a href="/index.php?route=checkout/checkout"><strong><?= FAS::icon('checkout') ?> Checkout</strong></a>
+                </p>
             </div>
         </li>
     </ul>

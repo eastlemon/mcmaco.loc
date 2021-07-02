@@ -1,12 +1,9 @@
 <?php
-
-/* @var $this yii\web\View */
-/* @var $cart \shop\cart\Cart */
-
 use shop\helpers\PriceHelper;
 use shop\helpers\WeightHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use rmrevin\yii\fontawesome\FAS;
 
 $this->title = 'Shopping Cart';
 $this->params['breadcrumbs'][] = ['label' => 'Catalog', 'url' => ['/catalog/index']];
@@ -51,15 +48,13 @@ $this->params['breadcrumbs'][] = $this->title;
                             <?php endif; ?>
                         </td>
                         <td class="text-left">
-                            <?= Html::beginForm(['quantity', 'id' => $item->getId()]); ?>
                             <div class="input-group btn-block" style="max-width: 200px;">
-                                <input type="text" name="quantity" value="<?= $item->getQuantity() ?>" size="1" class="form-control" />
-                                <span class="input-group-btn">
-                                    <button type="submit" title="" class="btn btn-primary" data-original-title="Update"><i class="fa fa-refresh"></i></button>
-                                    <a title="Remove" class="btn btn-danger" href="<?= Url::to(['remove', 'id' => $item->getId()]) ?>" data-method="post"><i class="fa fa-times-circle"></i></a>
-                                </span>
+                                <div class="btn-group">
+                                    <input type="text" name="quantity" value="<?= $item->getQuantity() ?>" size="1" class="form-control" />
+                                    <button type="button" class="btn btn-primary" data-toggle="tooltip" title="<?= Yii::t('shop', 'Update') ?>" href="<?= Url::to(['quantity', 'id' => $item->getId()]) ?>" data-method="post"><?= Html::a(FAS::icon('sync')) ?></button>
+                                    <button type="button" class="btn btn-danger" data-toggle="tooltip" title="<?= Yii::t('shop', 'Remove') ?>" href="<?= Url::to(['/cart/remove', 'id' => $item->getId()]) ?>" data-method="post"><?= FAS::icon('trash') ?></button>
+                                </div>
                             </div>
-                            <?= Html::endForm() ?>
                         </td>
                         <td class="text-right"><?= PriceHelper::format($item->getPrice()) ?></td>
                         <td class="text-right"><?= PriceHelper::format($item->getCost()) ?></td>

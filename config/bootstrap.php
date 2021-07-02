@@ -4,7 +4,6 @@ namespace app\config;
 
 use yii\base\BootstrapInterface;
 use yii\di\Container;
-use yii\di\Instance;
 use shop\dispatchers\EventDispatcher;
 use shop\dispatchers\DeferredEventDispatcher;
 use shop\dispatchers\AsyncEventDispatcher;
@@ -15,6 +14,8 @@ use shop\cart\Cart;
 use shop\cart\cost\calculator\DynamicCost;
 use shop\cart\cost\calculator\SimpleCost;
 use shop\cart\storage\HybridStorage;
+use shop\services\newsletter\MailChimp;
+use shop\services\newsletter\Newsletter;
 
 class Bootstrap implements BootstrapInterface
 {
@@ -44,6 +45,13 @@ class Bootstrap implements BootstrapInterface
             return new Cart(
                 new HybridStorage($app->get('user'), 'cart', 3600 * 24, $app->db),
                 new DynamicCost(new SimpleCost())
+            );
+        });
+        
+        $container->setSingleton(Newsletter::class, function () use ($app) {
+            return new MailChimp(
+                new \DrewM\MailChimp\MailChimp($app->params['mailChimpKey']),
+                $app->params['mailChimpListId']
             );
         });
 	}
